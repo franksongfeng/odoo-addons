@@ -10,7 +10,7 @@ This module extends the functionality of Project:
   * Makes "Customer" mandatory field.
   * Modifies the name_get adding the customer reference to the project name.
   * Modifies the name_search to search also by customer reference linked to
-project.
+    project.
 
 Installation
 ============
@@ -35,13 +35,14 @@ Contributors
 * Victor M. Martin <victor.martin@elico-corp.com>
 * Eric Caudal <eric.caudal@elico-corp.com>
 * Noah Wang <noah.wang@elico-corp.com>
+* Frank Song <frank.song@elico-corp.com>
 
 Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 
