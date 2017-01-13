@@ -4,6 +4,7 @@
 
 from openerp import api, models
 
+
 class AnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
 
@@ -16,8 +17,7 @@ class AnalyticAccount(models.Model):
         return False
 
     def _get_full_names(self, elmt, level):
-
-        # Tail recursion function
+        # Tail recursion function to get fullname on element with deepth limits
         def iter_parent_ids(elmt, level, full_names):
             if level <= 0:
                 full_names.append('...')
@@ -28,19 +28,15 @@ class AnalyticAccount(models.Model):
             else:
                 full_names.append(elmt.name)
                 return (None, level - 1, full_names)
-
         (_, _, full_names) = iter_parent_ids(elmt, level, [])
-
         return full_names
 
-    def name_get(self, cr, uid, ids, context=None): 
-
+    def name_get(self, cr, uid, ids, context=None):
         res = []
         if not ids:
             return res
         if isinstance(ids, (int, long)):
             ids = [ids]
-
         for id in ids:
             elmt = self.browse(cr, uid, id, context=context)
             full_names = self._get_full_names(elmt, 6)
@@ -58,8 +54,8 @@ class AnalyticAccount(models.Model):
                     )
                     partner_ref = self._get_partner_ref(project_obj)
                     if partner_ref:
-                        full_names[0] = "%s - %s" % (partner_ref, full_names[0])
-                full_names.reverse()  # order on First Root Last Leaf                
+                        full_names[
+                            0] = "%s - %s" % (partner_ref, full_names[0])
+                full_names.reverse()  # order on First Root Last Leaf
             res.append((id, ' / '.join(full_names)))
-
         return res
